@@ -74,7 +74,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Asynchrony Solutions"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Taaaaaaap"
                                                     message:@"Callout Accessory Tapped"
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
