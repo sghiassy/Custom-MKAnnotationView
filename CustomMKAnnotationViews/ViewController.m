@@ -60,7 +60,8 @@
 //
 //    if (count > 1) {
 //        //        [self.calloutAnnotation release];
-//        [self.mapView removeAnnotations:self.mapView.annotations]; // Remove all existing annotations
+//        [self.map removeAnnotations:self.mapView.annotations]; // Remove all existing annotations
+    [self removeAllPreviousAnnotations];
 //    }
 //
 //
@@ -75,6 +76,10 @@
 //    [self.mapView selectAnnotation:annotation animated:NO];
 //    //    });
 
+}
+
+- (void)removeAllPreviousAnnotations {
+    [self.map removeAnnotations:self.map.annotations]; // Remove all existing annotations
 }
 
 @end
