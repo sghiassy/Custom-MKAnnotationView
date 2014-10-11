@@ -63,58 +63,51 @@
 #pragma mark - Actions
 
 - (void)userTappedMap:(UIGestureRecognizer *)gestureRecognizer {
-    NSLog(@"User Tapped Map");
-//    NSArray *annotations = self.map.annotations;
-//    NSUInteger count = [annotations count];
-//
-//    if (count > 1) {
-//        //        [self.calloutAnnotation release];
-//        [self.map removeAnnotations:self.mapView.annotations]; // Remove all existing annotations
-    [self removeAllPreviousAnnotations];
-//    }
-//
-//
-    CGPoint screenPoint = [gestureRecognizer locationInView:self.map];
+    [self removeAllPreviousAnnotations]; // Comment this line out if you want to keep all previous annotations
+
+    CGPoint screenPoint = [gestureRecognizer locationInView:self.map]; // Grab the screen point from the gesture event
     CLLocationCoordinate2D geoPoint = [self.map convertPoint:screenPoint toCoordinateFromView:self.view];
-    MKPointAnnotation *point1 = [[MKPointAnnotation alloc] init];
-//    BasicMapAnnotation *annotation = [[[BasicMapAnnotation alloc] initWithLatitude:geoPoint.latitude andLongitude:geoPoint.longitude] autorelease];
-    point1.coordinate = geoPoint;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.map addAnnotation:point1];
-        [self.map selectAnnotation:point1 animated:NO];
-    });
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation.coordinate = geoPoint;
+    [self.map addAnnotation:annotation];
+    [self.map selectAnnotation:annotation animated:NO];
+}
 
-//
-//    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
-//    //    });
-
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Asynchrony Solutions"
+                                                    message:@"Callout Accessory Tapped"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 #pragma mark - MKMapViewDelegate Methods
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    // When the first annotation is added automatically by the system, we then add our second, custom, annotation
     CalloutMapAnnotation *customAnnotation = [[CalloutMapAnnotation alloc] initWithLatitude:view.annotation.coordinate.latitude andLongitude:view.annotation.coordinate.longitude];
     [self.map addAnnotation:customAnnotation];
     self.selectedAnnotationView = view;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    if ([annotation isKindOfClass:[CalloutMapAnnotation class]]) {
-        CalloutMapAnnotationView *calloutMapAnnotationView = [[AccessorizedCalloutMapAnnotationView alloc] initWithAnnotation:annotation
-                                                                                                               reuseIdentifier:@"CalloutAnnotation"];
+    CalloutMapAnnotationView *calloutMapAnnotationView = nil;
+    BOOL annotationIsOurCustomClass = [annotation isKindOfClass:[CalloutMapAnnotation class]];
+
+    if (annotationIsOurCustomClass) {
+        // If so, then create our custom annotation view
+        calloutMapAnnotationView = [[AccessorizedCalloutMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CalloutAnnotation"];
         calloutMapAnnotationView.contentHeight = 78.0f;
         UIImage *asynchronyLogo = [UIImage imageNamed:@"asynchrony-logo-small.png"];
         UIImageView *asynchronyLogoView = [[UIImageView alloc] initWithImage:asynchronyLogo];
         asynchronyLogoView.frame = CGRectMake(5, 2, asynchronyLogoView.frame.size.width, asynchronyLogoView.frame.size.height);
         [calloutMapAnnotationView.contentView addSubview:asynchronyLogoView];
-        //		}
         calloutMapAnnotationView.parentAnnotationView = self.selectedAnnotationView;
         calloutMapAnnotationView.mapView = self.map;
-        return calloutMapAnnotationView;
     }
 
-    return nil;
+    return calloutMapAnnotationView;
 }
 
 #pragma mark - Utility / Convience Methods
