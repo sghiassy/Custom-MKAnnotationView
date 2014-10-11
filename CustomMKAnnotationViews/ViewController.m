@@ -8,16 +8,22 @@
 
 #import <MapKit/MapKit.h>
 #import "ViewController.h"
+#import "CalloutMapAnnotation.h"
+#import "CalloutMapAnnotationView.h"
+#import "AccessorizedCalloutMapAnnotationView.h"
 
 
-@interface ViewController () <UIGestureRecognizerDelegate>
+@interface ViewController () <UIGestureRecognizerDelegate, MKMapViewDelegate>
 
 @property (nonatomic, strong) MKMapView *map;
+@property (nonatomic, strong) MKAnnotationView *selectedAnnotationView; // Can I get rid of this?
 
 @end
 
 
 @implementation ViewController
+
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,8 +31,11 @@
     [self setupGestureRecognizer];
 }
 
+#pragma mark - Setup Methods
+
 - (void)setupMapView {
     self.map = [[MKMapView alloc] init];
+    self.map.delegate = self;
     [self.view addSubview:self.map];
 
     // Setup Autolayout
@@ -70,13 +79,45 @@
     MKPointAnnotation *point1 = [[MKPointAnnotation alloc] init];
 //    BasicMapAnnotation *annotation = [[[BasicMapAnnotation alloc] initWithLatitude:geoPoint.latitude andLongitude:geoPoint.longitude] autorelease];
     point1.coordinate = geoPoint;
-    [self.map addAnnotation:point1];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.map addAnnotation:point1];
+        [self.map selectAnnotation:point1 animated:NO];
+    });
+
 //
 //    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//    [self.mapView selectAnnotation:annotation animated:NO];
+
 //    //    });
 
 }
+
+#pragma mark - MKMapViewDelegate Methods
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    CalloutMapAnnotation *customAnnotation = [[CalloutMapAnnotation alloc] initWithLatitude:view.annotation.coordinate.latitude andLongitude:view.annotation.coordinate.longitude];
+    [self.map addAnnotation:customAnnotation];
+    self.selectedAnnotationView = view;
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[CalloutMapAnnotation class]]) {
+        CalloutMapAnnotationView *calloutMapAnnotationView = [[AccessorizedCalloutMapAnnotationView alloc] initWithAnnotation:annotation
+                                                                                                               reuseIdentifier:@"CalloutAnnotation"];
+        calloutMapAnnotationView.contentHeight = 78.0f;
+        UIImage *asynchronyLogo = [UIImage imageNamed:@"asynchrony-logo-small.png"];
+        UIImageView *asynchronyLogoView = [[UIImageView alloc] initWithImage:asynchronyLogo];
+        asynchronyLogoView.frame = CGRectMake(5, 2, asynchronyLogoView.frame.size.width, asynchronyLogoView.frame.size.height);
+        [calloutMapAnnotationView.contentView addSubview:asynchronyLogoView];
+        //		}
+        calloutMapAnnotationView.parentAnnotationView = self.selectedAnnotationView;
+        calloutMapAnnotationView.mapView = self.map;
+        return calloutMapAnnotationView;
+    }
+
+    return nil;
+}
+
+#pragma mark - Utility / Convience Methods
 
 - (void)removeAllPreviousAnnotations {
     [self.map removeAnnotations:self.map.annotations]; // Remove all existing annotations

@@ -14,6 +14,9 @@
 		AAA30F2E19E905740059C11D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAA30F2D19E905740059C11D /* Images.xcassets */; };
 		AAA30F3119E905740059C11D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAA30F2F19E905740059C11D /* LaunchScreen.xib */; };
 		AAA30F3D19E905750059C11D /* CustomMKAnnotationViewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA30F3C19E905750059C11D /* CustomMKAnnotationViewsTests.m */; };
+		AAC6024E19E9171800C3BB77 /* CalloutMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6024D19E9171800C3BB77 /* CalloutMapAnnotation.m */; };
+		AAC6025219E91A0300C3BB77 /* CalloutMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6025119E91A0300C3BB77 /* CalloutMapAnnotationView.m */; };
+		AAC6025519E91AEC00C3BB77 /* AccessorizedCalloutMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC6025419E91AEC00C3BB77 /* AccessorizedCalloutMapAnnotationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,12 @@
 		AAA30F3619E905750059C11D /* CustomMKAnnotationViewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomMKAnnotationViewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA30F3B19E905750059C11D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAA30F3C19E905750059C11D /* CustomMKAnnotationViewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomMKAnnotationViewsTests.m; sourceTree = "<group>"; };
+		AAC6024C19E9171800C3BB77 /* CalloutMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalloutMapAnnotation.h; sourceTree = "<group>"; };
+		AAC6024D19E9171800C3BB77 /* CalloutMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalloutMapAnnotation.m; sourceTree = "<group>"; };
+		AAC6025019E91A0300C3BB77 /* CalloutMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalloutMapAnnotationView.h; sourceTree = "<group>"; };
+		AAC6025119E91A0300C3BB77 /* CalloutMapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalloutMapAnnotationView.m; sourceTree = "<group>"; };
+		AAC6025319E91AEC00C3BB77 /* AccessorizedCalloutMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessorizedCalloutMapAnnotationView.h; sourceTree = "<group>"; };
+		AAC6025419E91AEC00C3BB77 /* AccessorizedCalloutMapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessorizedCalloutMapAnnotationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +90,16 @@
 		AAA30F1F19E905740059C11D /* CustomMKAnnotationViews */ = {
 			isa = PBXGroup;
 			children = (
-				AAA30F2419E905740059C11D /* AppDelegate.h */,
-				AAA30F2519E905740059C11D /* AppDelegate.m */,
+				AAC6024F19E9172100C3BB77 /* App Delegate */,
 				AAA30F2719E905740059C11D /* ViewController.h */,
 				AAA30F2819E905740059C11D /* ViewController.m */,
-				AAA30F2A19E905740059C11D /* Main.storyboard */,
+				AAC6024C19E9171800C3BB77 /* CalloutMapAnnotation.h */,
+				AAC6024D19E9171800C3BB77 /* CalloutMapAnnotation.m */,
+				AAC6025019E91A0300C3BB77 /* CalloutMapAnnotationView.h */,
+				AAC6025119E91A0300C3BB77 /* CalloutMapAnnotationView.m */,
+				AAC6025319E91AEC00C3BB77 /* AccessorizedCalloutMapAnnotationView.h */,
+				AAC6025419E91AEC00C3BB77 /* AccessorizedCalloutMapAnnotationView.m */,
 				AAA30F2D19E905740059C11D /* Images.xcassets */,
-				AAA30F2F19E905740059C11D /* LaunchScreen.xib */,
 				AAA30F2019E905740059C11D /* Supporting Files */,
 			);
 			path = CustomMKAnnotationViews;
@@ -117,6 +129,17 @@
 				AAA30F3B19E905750059C11D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AAC6024F19E9172100C3BB77 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				AAA30F2419E905740059C11D /* AppDelegate.h */,
+				AAA30F2519E905740059C11D /* AppDelegate.m */,
+				AAA30F2A19E905740059C11D /* Main.storyboard */,
+				AAA30F2F19E905740059C11D /* LaunchScreen.xib */,
+			);
+			name = "App Delegate";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +242,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC6025519E91AEC00C3BB77 /* AccessorizedCalloutMapAnnotationView.m in Sources */,
 				AAA30F2919E905740059C11D /* ViewController.m in Sources */,
 				AAA30F2619E905740059C11D /* AppDelegate.m in Sources */,
+				AAC6024E19E9171800C3BB77 /* CalloutMapAnnotation.m in Sources */,
 				AAA30F2319E905740059C11D /* main.m in Sources */,
+				AAC6025219E91A0300C3BB77 /* CalloutMapAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +438,7 @@
 				AAA30F4219E905750059C11D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AAA30F4319E905750059C11D /* Build configuration list for PBXNativeTarget "CustomMKAnnotationViewsTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +447,7 @@
 				AAA30F4519E905750059C11D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
