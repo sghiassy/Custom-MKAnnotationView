@@ -64,12 +64,12 @@
 //    }
 //
 //
-//    CGPoint screenPoint = [gestureRecognizer locationInView:self.mapView];
-//    CLLocationCoordinate2D geoPoint = [self.mapView convertPoint:screenPoint toCoordinateFromView:self.view];
-//    //    MKPointAnnotation *point1 = [[MKPointAnnotation alloc] init];
+    CGPoint screenPoint = [gestureRecognizer locationInView:self.map];
+    CLLocationCoordinate2D geoPoint = [self.map convertPoint:screenPoint toCoordinateFromView:self.view];
+    MKPointAnnotation *point1 = [[MKPointAnnotation alloc] init];
 //    BasicMapAnnotation *annotation = [[[BasicMapAnnotation alloc] initWithLatitude:geoPoint.latitude andLongitude:geoPoint.longitude] autorelease];
-//    //    point1.coordinate = geoPoint;
-//    [self.mapView addAnnotation:annotation];
+    point1.coordinate = geoPoint;
+    [self.map addAnnotation:point1];
 //
 //    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //    [self.mapView selectAnnotation:annotation animated:NO];
