@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FDE82955-8B80-40EF-AF12-459DF9D3B2B7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CustomMKAnnotationViews</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>75202421A23645C17FB7A82575634B9333578C02</key>
+		<string>github.com:sghiassy/Custom-MKAnnotationView.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CustomMKAnnotationViews.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>75202421A23645C17FB7A82575634B9333578C02</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:sghiassy/Custom-MKAnnotationView.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>75202421A23645C17FB7A82575634B9333578C02</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>75202421A23645C17FB7A82575634B9333578C02</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CustomMKAnnotationViews</string>
+		</dict>
+	</array>
+</dict>
+</plist>
